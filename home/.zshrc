@@ -57,8 +57,13 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git rsync)
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/rsync"
+# Git
+zplug "plugins/git", from:oh-my-zsh, if:"which git"
+zplug "plugins/gitfast", from:oh-my-zsh, if:"which git"
+zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
+zplug "plugins/gitignore", from:oh-my-zsh, if:"which git"
+zplug "Seinh/git-prune", if:"which git"
+zplug "plugins/rsync", from:oh-my-zsh, if:"which rsync"
 # User configuration
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
