@@ -10,8 +10,8 @@ export ZSH=/home/drupalizer/.oh-my-zsh
      source ~/.zplug/init.zsh && zplug update --self
      fi
 
-     # Essential
-     source ~/.zplug/init.zsh
+# Essential
+source ~/.zplug/init.zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -64,6 +64,19 @@ zplug "plugins/git-extras", from:oh-my-zsh, if:"which git"
 zplug "plugins/gitignore", from:oh-my-zsh, if:"which git"
 zplug "Seinh/git-prune", if:"which git"
 zplug "plugins/rsync", from:oh-my-zsh, if:"which rsync"
+zplug "zsh-users/zsh-syntax-highlighting"
+
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+     printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
+
+zplug load
 # User configuration
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
@@ -115,3 +128,5 @@ export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
